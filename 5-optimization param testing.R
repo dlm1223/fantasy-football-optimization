@@ -1,5 +1,140 @@
+source("2-organize data.R")
+source("3-optimization errors.R")
+source("4-optimization optimize.R")
+errors[order(errors$fantPts_AGG.bin, decreasing = T),]
+
+all.data<-all.data[, !grepl("[.]G", colnames(all.data))& !grepl("ADPSD", colnames(all.data))] #clean columns
 
 #must define getPicks() and simSeason() functions from 4-optimization optimize.R
+
+###SINGLE SLOT######
+
+#outline optimal draft lineup (16 players) given position parameters
+#then simulate scores from lineup to see mean simulated starting lineup (10 players) from the planned draft. ex: drafting only 5 backup qbs will be less useful than 5 backup wrs
+
+
+scoring<-"fantPts_AGG"
+
+#default
+picks1<-getPicks(slot="Slot7", data=all.data[all.data$Season==2019,], numTeams = 12,customPicks = c(),
+                 numRB=4, numWR = 5,numTE=2,numQB=2,numK=1, numDST=1,numFLEX = 0,shift=0,  out=c(), fix=c(), scoring=scoring)
+picks1
+topLineups1<- simSeason(picks = picks1, data=all.data, scoring=scoring,numSims=2000,
+                        numRB = 2, numWR=2, numFLEX = 1, 
+                        numQB=1, numTE = 1, numDST = 1, numK = 1   )
+simScores1<-sapply(topLineups1, function(x) sum(x$Sim))
+plot(cummean(simScores1))
+summary(simScores1)
+
+#default , no backup TE
+picks2<-getPicks(slot="Slot7", data=all.data[all.data$Season==2019,], numTeams = 12,customPicks = c(),
+                 numRB=5, numWR = 5,numTE=1,numQB=2,numK=1, numDST=1,numFLEX = 0,shift=0,  out=c(), fix=c(), scoring=scoring)
+picks2
+topLineups2<- simSeason(picks = picks2, data=all.data, scoring=scoring,numSims=2000,
+                        numRB = 2, numWR=2, numFLEX = 1, numQB=1, numTE = 1, numDST = 1, numK = 1   )
+simScores2<-sapply(topLineups2, function(x) sum(x$Sim))
+summary((simScores2))
+
+
+#default, no backup QB
+picks3<-getPicks(slot="Slot7", data=all.data[all.data$Season==2019,], numTeams = 12,customPicks = c(),
+                 numRB=5, numWR = 5,numTE=2,numQB=1,numK=1, numDST=1,numFLEX = 0,shift=0,  out=c(), fix=c(), scoring=scoring)
+picks3
+topLineups3<-simSeason(picks = picks3, data=all.data, scoring=scoring,numSims=2000,
+                       numRB = 2, numWR=2, numFLEX = 1, numQB=1, numTE = 1, numDST = 1, numK = 1   )
+simScores3<-sapply(topLineups3, function(x) sum(x$Sim))
+summary((simScores3))
+
+
+#zero RB in 1-3
+picks4<-getPicks(slot="Slot7", data=all.data[all.data$Season==2019,], numTeams = 12,customPicks = c(),outPos = rep("RB",3),
+                 numRB=5, numWR = 4,numTE=2,numQB=2,numK=1, numDST=1,numFLEX = 0,shift=0,  out=c(), fix=c(), scoring=scoring)
+picks4
+topLineups4<-simSeason(picks = picks4, data=all.data, scoring=scoring,numSims=2000,
+                       numRB = 2, numWR=2, numFLEX = 1, numQB=1, numTE = 1, numDST = 1, numK = 1   )
+topLineups4[[33]]
+simScores4<-sapply(topLineups4, function(x) sum(x$Sim))
+plot(cummean(simScores4))
+# hist(simScores4)
+
+
+#zero RB in R1-3. heavy RB
+picks5<-getPicks(slot="Slot7", data=all.data[all.data$Season==2019,], numTeams = 12,customPicks = c(),outPos = rep("RB",3),
+                 numRB=6, numWR = 3,numTE=2,numQB=2,numK=1, numDST=1,numFLEX = 0,shift=0,  out=c(), fix=c(), scoring=scoring)
+picks5
+topLineups5<-simSeason(picks = picks5, data=all.data, scoring=scoring,numSims=2000,
+                       numRB = 2, numWR=2, numFLEX = 1, numQB=1, numTE = 1, numDST = 1, numK = 1   )
+topLineups5[[33]]
+simScores5<-sapply(topLineups5, function(x) sum(x$Sim))
+plot(cummean(simScores5))
+
+#zero WR in R1-3
+picks6<-getPicks(slot="Slot7", data=all.data[all.data$Season==2019,], numTeams = 12,customPicks = c(),outPos = rep("WR",3),
+                 numRB=4, numWR = 5,numTE=2,numQB=2,numK=1, numDST=1,numFLEX = 0,shift=0,  out=c(), fix=c(), scoring=scoring)
+picks6
+topLineups6<-simSeason(picks = picks6, data=all.data, scoring=scoring,numSims=2000,
+                       numRB = 2, numWR=2, numFLEX = 1, numQB=1, numTE = 1, numDST = 1, numK = 1   )
+topLineups5[[33]]
+simScores6<-sapply(topLineups6, function(x) sum(x$Sim))
+plot(cummean(simScores6))
+
+#zero WR in R1-3. heavy WR
+picks7<-getPicks(slot="Slot7", data=all.data[all.data$Season==2019,], numTeams = 12,customPicks = c(),outPos=rep("WR", 3),
+                 numRB=3, numWR = 6,numTE=2,numQB=2,numK=1, numDST=1,numFLEX = 0,shift=0,  fix=c(),  out=c(),  scoring=scoring)
+picks7
+topLineups7<-simSeason(picks = picks7, data=all.data, scoring=scoring,numSims=2000,
+                       numRB = 2, numWR=2, numFLEX = 1, numQB=1, numTE = 1, numDST = 1, numK = 1   )
+topLineups5[[33]]
+simScores7<-sapply(topLineups7, function(x) sum(x$Sim))
+summary(simScores7)
+
+
+#zero QB R1-9
+picks8<-getPicks(slot="Slot7", data=all.data[all.data$Season==2019,], numTeams = 12,outPos = rep("QB",9),
+                 numRB=4, numWR = 5,numTE=2,numQB=2,numK=1, numDST=1,numFLEX = 0,shift=0,fix=c(),  out=c(),  scoring=scoring)
+picks8
+topLineups8<-simSeason(picks = picks8, data=all.data, scoring=scoring,numSims=2000,
+                       numRB = 2, numWR=2, numFLEX = 1, numQB=1, numTE = 1, numDST = 1, numK = 1   )
+simScores8<-sapply(topLineups8, function(x) sum(x$Sim))
+plot(cummean(simScores8))
+summary(simScores8)
+topLineups8[[3]]
+
+#backup everyone!
+picks9<-getPicks(slot="Slot7", data=all.data[all.data$Season==2019,], numTeams = 12,customPicks = c(),fix=c(), 
+                 numRB=3, numWR = 4,numTE=2,numQB=2,numK=2, numDST=2,numFLEX = 0,shift=0,  out=c(),  scoring=scoring)
+picks9
+topLineups9<-simSeason(picks = picks9, data=all.data, scoring=scoring,numSims=2000,
+                       numRB = 2, numWR=2, numFLEX = 1, numQB=1, numTE = 1, numDST = 1, numK = 1   )
+simScores9<-sapply(topLineups9, function(x) sum(x$Sim))
+plot(cummean(simScores9))
+summary(simScores9)
+
+#draft TE round 2
+picks10<-getPicks(slot="Slot7", data=all.data[all.data$Season==2019,], numTeams = 12,customPicks = c(),fix = c(),
+                  numRB=4, numWR =5 ,numTE=2,numQB=2,numK=1, numDST=1,numFLEX = 0,shift=0,  out=c(),  scoring=scoring)
+picks10
+topLineups10<-simSeason(picks = picks10, data=all.data, scoring=scoring,numSims=2000,
+                        numRB = 2, numWR=2, numFLEX = 1, numQB=1, numTE = 1, numDST = 1, numK = 1   )
+simScores10<-sapply(topLineups10, function(x) sum(x$Sim))
+plot(cummean(simScores10))
+summary(simScores10)
+
+
+
+all.sims<-data.frame(simScores1, simScores2, simScores3, simScores4,simScores5, simScores6, simScores7, simScores8, simScores9, simScores10   )
+all.sims<-melt(all.sims,value.name = "Lineup.Score", variable.name = "Sim" )
+all.sims$Slot<-"Slot7"
+all.sims
+ddply(all.sims, .(Sim),summarize, mean(Lineup.Score), sd(Lineup.Score), sum(Lineup.Score>2100)/length(Lineup.Score))
+hist(simScores8)
+
+
+
+
+
+###ALL SLOTS######
+
 
 
 simSlot<-function(slot){
@@ -129,6 +264,6 @@ save(all.slot.sims, file="Data/all-slot-sims.Rda")
 means<-ddply(all.slot.sims, .(Slot, Sim),summarize,
              mean.score=mean(Lineup.Score), 
              sd.score=sd(Lineup.Score), 
-             sum(Lineup.Score>1900)/length(Lineup.Score))
+             high.score=sum(Lineup.Score>1900)/length(Lineup.Score))
 means$Slot<-factor(means$Slot, levels=paste0("Slot", 1:12))
 means[order(means$Slot),]

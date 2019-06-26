@@ -1,8 +1,8 @@
-rm(list=ls())
+# rm(list=ls())
 source('functions.R', encoding = 'UTF-8')
 load("Data/Fantasy Data.RData")
 
-#change to 0 or 1 for STD or PPR
+#change to 0 for STD or 1 or PPR. can change more stats below manually
 recept.pts<-.5
 
 
@@ -96,6 +96,7 @@ all.data<-Reduce(function(dtf1, dtf2) merge(dtf1, dtf2, by =c( "Player", "Team",
                       FFANALYTICS[,c("Player", "Team", "Season", "fantPts_FFA")]
                  ))
 all.data<-all.data[all.data$Pos%in% c('RB',"WR", "TE", "QB", "DST", "K"), ]
+all.data$fantPts_FFTODAY[all.data$Pos=='QB'& all.data$Season==2018]<-all.data$fantPts_FFA[all.data$Pos=='QB'& all.data$Season==2018] #2018 fftoday got screwed up so imputing
 
 ffcalc[duplicated(ffcalc[, c("Player", "Pos","Season")]),]
 
@@ -122,6 +123,7 @@ table(all.data$Pos, all.data$Season)
 summary(all.data[all.data$Season>=2014& !is.na(all.data$ADP_half),])
 
 
+
 ####QUICK PLOTS######
 
 #plot some correlations
@@ -135,23 +137,25 @@ analyze<-analyze[analyze$Season>=2014,]
 analyze<-ddply(analyze, .(Pos, Season), mutate,
                Actual.rank=rank(-fantPts,na.last = "keep" ),
                ADP.rank=rank(ADP_half,na.last = "keep" ),
-               fantpts_FFA.rank=rank(-fantPts_FFA, na.last = "keep"), #na.last=keep will return NA rank for missing values
+               fantPts_AGG.rank=rank(-fantPts_AGG, na.last="keep"),
+               fantPts_FFA.rank=rank(-fantPts_FFA, na.last = "keep"), #na.last=keep will return NA rank for missing values
                fantPts_FDATA.rank=rank(-fantPts_FDATA, na.last = "keep"), #na.last=keep will return NA rank for missing values
                fantPts_FFTODAY.rank=rank(-fantPts_FFTODAY, na.last = "keep") #na.last=keep will return NA rank for missing values
 )
-analyze<-analyze[order(analyze$Season, analyze$ADP.rank, decreasing = F),]
 head(analyze[analyze$Season==2018& analyze$Pos=="WR",], 15)
 cors<-ddply(analyze, .(Pos), summarize,
+            n=length(Actual.rank),
             ADP.rank=cor(Actual.rank,ADP.rank ),
-            fantPts_AGG=cor(Actual.rank, -fantPts_AGG), #comapring projection, not exactly fair
-            fantpts_FFA.rank=cor(Actual.rank,fantpts_FFA.rank),
+            fantPts_AGG.rank=cor(Actual.rank, fantPts_AGG.rank), #comapring projection, not exactly fair
+            fantPts_FFA.rank=cor(Actual.rank,fantPts_FFA.rank),
             fantPts_FDATA.rank=cor(Actual.rank,fantPts_FDATA.rank ),
             fantPts_FFTODAY.rank=cor(Actual.rank,fantPts_FFTODAY.rank)
             
 )
 cors
-ggplot(melt(cors, id.vars="Pos", value.name='cor',variable.name='Source'), aes(x=Pos, y=cor, fill=Source))+
-  geom_bar(position="dodge", stat="identity")
+ggplot(melt(cors[, !colnames(cors)=="n"], id.vars="Pos", value.name='cor',variable.name='Source'), aes(x=Pos, y=cor, fill=Source))+
+  geom_bar(position="dodge", stat="identity")+
+  ggtitle("Correlations to End of Season Rank,2014-2018")
 
 
 
@@ -160,15 +164,15 @@ table(analyze$Season)
 analyze<-ddply(analyze, .(Pos, Season), mutate,
                Actual.rank=rank(-fantPts,na.last = "keep" ),
                ADP.rank=rank(ADP_half,na.last = "keep" ),
-               fantpts_AGG.rank=rank(-fantPts_AGG, na.last = "keep")
+               fantPts_AGG.rank=rank(-fantPts_AGG, na.last = "keep")
 )
-analyze$fantpts_ENSEMBLE.rank<-rowMeans(analyze[, c("ADP.rank", "fantpts_AGG.rank")])
+analyze$fantPts_ENSEMBLE.rank<-rowMeans(analyze[, c("ADP.rank", "fantPts_AGG.rank")])
 
 cors<-ddply(analyze, .(Pos), summarize,
             ADP.rank=cor(Actual.rank,ADP.rank ),
             fantPts_AGG=cor(Actual.rank, -fantPts_AGG), #comapring projection, not exactly fair
-            fantpts_AGG.rank=cor(Actual.rank,fantpts_AGG.rank),
-            fantpts_ENSEMBLE.rank=cor(Actual.rank,fantpts_ENSEMBLE.rank)
+            fantPts_AGG.rank=cor(Actual.rank,fantPts_AGG.rank),
+            fantPts_ENSEMBLE.rank=cor(Actual.rank,fantPts_ENSEMBLE.rank)
             
 )
 cors
@@ -176,15 +180,15 @@ ggplot(melt(cors, id.vars="Pos", value.name='cor',variable.name='Source'), aes(x
   geom_bar(position="dodge", stat="identity")
 
 
-analyze$Fantasy.Starter<-analyze$fantpts_ENSEMBLE.rank<=12& analyze$Pos%in%c("TE", "QB", "DST", "K")|
-  analyze$fantpts_ENSEMBLE.rank<=30& analyze$Pos%in%c("RB")|
-  analyze$fantpts_ENSEMBLE.rank<=40& analyze$Pos%in%c("WR")
+analyze$Fantasy.Starter<-analyze$fantPts_ENSEMBLE.rank<=12& analyze$Pos%in%c("TE", "QB", "DST", "K")|
+  analyze$fantPts_ENSEMBLE.rank<=30& analyze$Pos%in%c("RB")|
+  analyze$fantPts_ENSEMBLE.rank<=40& analyze$Pos%in%c("WR")
 
 cors<-ddply(analyze[analyze$Fantasy.Starter,], .(Pos), summarize,
             ADP.rank=cor(Actual.rank,ADP.rank ),
             fantPts_AGG=cor(Actual.rank, -fantPts_AGG), #comapring projection, not exactly fair
-            fantpts_AGG.rank=cor(Actual.rank,fantpts_AGG.rank),
-            fantpts_ENSEMBLE.rank=cor(Actual.rank,fantpts_ENSEMBLE.rank)
+            fantPts_AGG.rank=cor(Actual.rank,fantPts_AGG.rank),
+            fantPts_ENSEMBLE.rank=cor(Actual.rank,fantPts_ENSEMBLE.rank)
             
 )
 cors
@@ -192,13 +196,27 @@ ggplot(melt(cors, id.vars="Pos", value.name='cor',variable.name='Source'), aes(x
   geom_bar(position="dodge", stat="identity")
 
 #top 12 each position
-cors<-ddply(analyze[analyze$fantpts_ENSEMBLE.rank<=12,], .(Pos), summarize,
+analyze<-all.data[complete.cases(all.data[,c("fantPts", "ADP_half", "fantPts_FFA", "fantPts_FDATA", "fantPts_FFTODAY")])|
+                    (complete.cases(all.data[,c("fantPts", "ADP_half", "fantPts_FFA",  "fantPts_FFTODAY")])& all.data$Pos=='K')  ,] #
+analyze<-analyze[analyze$Season>=2014,]
+analyze<-ddply(analyze, .(Pos, Season), mutate,
+               Actual.rank=rank(-fantPts,na.last = "keep" ),
+               ADP.rank=rank(ADP_half,na.last = "keep" ),
+               fantPts_AGG.rank=rank(-fantPts_AGG, na.last="keep"),
+               fantPts_FFA.rank=rank(-fantPts_FFA, na.last = "keep"), #na.last=keep will return NA rank for missing values
+               fantPts_FDATA.rank=rank(-fantPts_FDATA, na.last = "keep"), #na.last=keep will return NA rank for missing values
+               fantPts_FFTODAY.rank=rank(-fantPts_FFTODAY, na.last = "keep") #na.last=keep will return NA rank for missing values
+)
+cors<-ddply(analyze[analyze$ADP.rank<=12,], .(Pos), summarize,
+            n=length(Actual.rank),
             ADP.rank=cor(Actual.rank,ADP.rank ),
-            fantPts_AGG=cor(Actual.rank, -fantPts_AGG), #comapring projection, not exactly fair
-            fantpts_AGG.rank=cor(Actual.rank,fantpts_AGG.rank),
-            fantpts_ENSEMBLE.rank=cor(Actual.rank,fantpts_ENSEMBLE.rank)
+            fantPts_AGG.rank=cor(Actual.rank, fantPts_AGG.rank), #comapring projection, not exactly fair
+            fantPts_FFA.rank=cor(Actual.rank,fantPts_FFA.rank),
+            fantPts_FDATA.rank=cor(Actual.rank,fantPts_FDATA.rank ),
+            fantPts_FFTODAY.rank=cor(Actual.rank,fantPts_FFTODAY.rank)
             
 )
 cors
-ggplot(melt(cors, id.vars="Pos", value.name='cor',variable.name='Source'), aes(x=Pos, y=cor, fill=Source))+
-  geom_bar(position="dodge", stat="identity")
+ggplot(melt(cors[, !colnames(cors)=="n"], id.vars="Pos", value.name='cor',variable.name='Source'), aes(x=Pos, y=cor, fill=Source))+
+  geom_bar(position="dodge", stat="identity")+
+  ggtitle("Correlations to End of Season Rank,2014-2018, Top 12 players by Pos")
