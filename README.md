@@ -21,7 +21,7 @@ the effects of different strategies.
 
 </br> </br>
 
-## 1. Organizing/Plotting the Data
+#### 1. Organizing/Plotting the Data
 
 The first thing I’ll do is organize the data. I’m using season
 projections from FantasyData.com, fantasyfootballanalytics.net, and
