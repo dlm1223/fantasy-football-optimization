@@ -5,16 +5,10 @@ In this post, I’ll use simulation and optimization to determine which
 draft strategies will result in the best lineups for fantasy football.
 
 In fantasy football, there’s a lot to consider when trying to figure out
-an optimal draft strategy. For example, WR draft position is more
-correlated to their end of season ranking than RB draft position is, so
-for that reason, it might make sense to pick WRs first. However, on the
-other hand, top RB’s have a higher ceiling and the potential to score
-350 points, whereas top WRs can only reach 275 points. Then, the
-potential “league-winning” variance/higher projection of RBs may seem to
-make them more appealing. Positions like DST, which have low ceiling and
+an optimal draft strategy. Top RB’s have a high ceiling and the potential to score
+350 points, whereas top WRs can only reach 275 points, however top WR's are usually seen as safer as they have a higher correlation of their preseason to end of season rank. Positions like DST, which have low ceiling and
 low pre-season correlation seem to be an obvious choice to draft very
-late. QBs, on the other hand, which have high ceiling and low
-correlation are less clear. There’s a lot of things to consider, and I
+late. There’s a lot of things to consider, and I
 haven’t even mentioned other things like how you need to start a
 different number of each position. Simulation is a good way to estimate
 the effects of different strategies.
