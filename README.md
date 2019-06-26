@@ -1244,11 +1244,11 @@ evaluate strategies.
 Looking at the strategies, many of them perform similarly, finishing
 within 10-20 points. A couple did do worse, for example the zero-WR does
 considerably worse than zero-RB for people with mid-late slots in the
-draft. For these people, zero-WR in R1-3 often performed 50 points worse
+draft, meaning you should likely take some WRs in the first few rounds. For these mid-late slots, zero-WR in R1-3 often performed 50 points worse
 than a zero-RB in it’s mean simulated starting lineup, which is
 basically like drafting Derrick Henry over Melvin Gordon in R1, and so
 it isn’t insignificant. If a league requires 3 WRs to start then this
-early RB likely strategy becomes even worse. Other parameter changes
+early RB strategy likely becomes even worse. Other parameter changes
 like taking backup TE/QBs also have a decent 10-20 point impact across
 draft slots.
 
@@ -1257,8 +1257,7 @@ People often assume analytics will automatically give them an edge, but
 often times public consensus or human rankings can be as accurate or
 more accurate than an analytical model. I wouldn’t just go by a
 projection model or trust someone until I’ve seen it is proven to be
-useful. For this post, the projections seemed similar to ADP so I felt
-ok using them as the basis. WRs do appear to be somewhat easier and so
+useful, even if they try to make it sound complex. WRs do appear to be somewhat easier and so
 it might make sense to work on a model for them or find someone who has
 an accurate one.
 
@@ -1285,7 +1284,6 @@ sleepers.
 
 TLDR: Most strategies did similarly. It does seem that you should take a
 backup TE and QB. In addition, zero-WR strategy does not seem like a
-good move, especially if you are in the mid-late picks of the draft.
+good move, especially if you are in the mid-late picks of the draft, so I'd try to draft at least 1 WR in the first few rounds.
 Other than that I haven’t found any shocking secrets yet that will give
-me a huge edge, though it’s possible I just didn’t test the right
-strategies yet. Thanks for reading!
+me a huge edge. Thanks for reading!
