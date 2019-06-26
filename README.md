@@ -64,18 +64,19 @@ After preparing the data and organizing estimated projections and
 errors, I’m ready to test out draft strategies. I want something [like
 this](https://fantasyfootballcalculator.com/draft-strategy/half-ppr/12-team/7-spot),
 which shows how a different strategy in R1-3 will affect a draft’s
-projected points. This is meant to let you to see what positions you
+projected points. This is meant to let you see what positions you
 should wait on drafting if you want to maximize your points. The thing
-that isn’t accounted for in the above link though, is that you are not
+that isn’t accounted for in the above link though, is that in reality you are not
 trying to maximize projected points of a full draft, but rather for your
 eventual starting lineup, so you’re trying to pick the draft that will
-give you the best nine players.
+give you the best eventual nine players.
 
-To do this, my methodology consists of two functions: getPicks() and
-simSeason(): - getPicks() takes in parameters like the slot you are
+My methodology consists of two functions: getPicks() and
+simSeason(): 
+- getPicks() takes in parameters like the slot you are
 drafting at, numRBs to draft, numWR to draft, and you can fix/exclude
 players or positions for each round as well. It then returns the draft
-which maximizes total points of the whole, given the specified
+which maximizes total points of all the picks, given the specified
 parameters and draft-position constraints. I show an example below,
 maximizing the points for Slot7/12 in a 15 round draft.
 
@@ -506,16 +507,15 @@ NA
 </table>
 Above I display the optimal planned-draft given my parameters. You can
 see how each player’s ADP.Rank must be greater than or equal to the slot
-you are drafting at.
+they are drafted at.
 
 </br>
 
-The second function is simSeason() which takes in the planned-draft from
+The second function is simSeason() which takes in the above planned-draft from
 getPicks(), and using the errors from earlier, samples from the errors
-in the player’s corresponding position/bin to get a simulated score for
-each drafted player. Using this, I can sort by simulated score to get
-the starting lineup. You only can put 9 players in your starting lineup
-and so if you have 2 amazing QBs, only 1 will get into your simulated
+in the player’s corresponding position/projection-bin to get a simulated score. Using this, I can then sort by simulated score to get
+the starting lineup from my draft. You only can put 9 players in your starting lineup
+and so if you have 2 amazing QBs in the simulated scores, only 1 will get into your simulated
 starting lineup. In addition, I also simulate the scores of the
 undrafted players, and I assume you are able to add the 4th-best
 simulated undrafted player at each position. I made this assumption
@@ -887,7 +887,7 @@ Lar
 You can see from “error”, which players over and underperformed in the
 sim, sampling the error from 2008-2018 data. Additionally, in the above
 sim you see how Tennessee DST made it into the top starting lineup as a
-pickup. Finally, I can repeat simseason() many times, and so can get a
+pickup. I can now repeat simseason() many times, and so can get a
 mean simulated-lineup-total-score for the planned picks. I used 2000 as
 my simulation size as it seemed sufficient for the mean to converge.
 
