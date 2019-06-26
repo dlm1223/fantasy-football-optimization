@@ -214,7 +214,6 @@ evaluate strategies.
 </br> </br>
 
 # 4. Conclusion
--------------
 
 Looking at the strategies, many of them perform similarly, finishing
 within 10-20 points. A couple did do worse, for example the zero-WR does
