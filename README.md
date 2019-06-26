@@ -22,7 +22,6 @@ the effects of different strategies.
 </br> </br>
 
 ## 1. Organizing/Plotting the Data
--------------------------------
 
 The first thing I’ll do is organize the data. I’m using season
 projections from FantasyData.com, fantasyfootballanalytics.net, and
@@ -59,7 +58,7 @@ and summarized, I’m ready to test out a system.
 </br> </br>
 
 ## 2. Evaluating a Draft Strategy
-------------------------------
+
 
 After preparing the data and organizing estimated projections and
 errors, I’m ready to test out draft strategies. I want something [like
@@ -903,7 +902,7 @@ my simulation size as it seemed sufficient for the mean to converge.
 </br> </br>
 
 ## 3. Parameter Optimization
--------------------------
+
 
 Now I’m ready to test different getPicks() parameters to see how I
 should do my draft to get my the best mean-starting lineup. I included
@@ -1240,7 +1239,7 @@ evaluate strategies.
 </br> </br>
 
 ## 4. Conclusion
--------------
+
 
 Looking at the strategies, many of them perform similarly, finishing
 within 10-20 points. A couple did do worse, for example the zero-WR does
