@@ -47,7 +47,6 @@ for each position:
 
 In addition, I’d also like to summarize the errors/variance:
 
-    ## Picking joint bandwidth of 17.4
 
 ![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
