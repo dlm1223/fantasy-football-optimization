@@ -914,7 +914,7 @@ combinations below for the 7th slot of a 12 team, 15 round draft.
 
 ![](README_files/figure-markdown_strict/unnamed-chunk-10-1.png)
 
-And there are the detailed parameters with each strategy:
+And below is the detailed parameter info for each strategy:
 
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -1217,7 +1217,7 @@ strategy. Not taking a backup TE and QB also worsen the score.
 
 </br>
 
-Finally, I reproduce this for all strategies Below you can see the
+Finally, I reproduce this for all draft slots. Below you can see the
 results, and how the best strategy is affected by your draft slot.
 
 ![](README_files/figure-markdown_strict/unnamed-chunk-12-1.png)![](README_files/figure-markdown_strict/unnamed-chunk-12-2.png)
