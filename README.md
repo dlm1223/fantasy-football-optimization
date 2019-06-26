@@ -17,7 +17,7 @@ the effects of different strategies.
 
 # 1. Organizing/Plotting the Data
 
-The first thing I’ll do is organize the data. I’m using season
+The first thing I’ll do is organize/plot the data. I’m using season
 projections from FantasyData.com, fantasyfootballanalytics.net, and
 FFToday.com because they have archived projections available. I’m using
 Average Draft Position (ADP) data from fantasyfootballcalculator.com
@@ -29,9 +29,7 @@ RB/WR/TE, 1 DST, 1K). To start off I’ll look at some summary stats:
 
 From this chart, you can see that certain players are easier to project.
 DST expectedly is very hard to rank preseason so is an obvious candidate
-to draft late. WR’s on the other hand seem the easiest to project, and
-for all of them the projections seem to have performed similarly to ADP.
-AGG.rank is just the mean of the outside ranks. This plot is a bit
+to draft late. AGG.rank is just the mean of the outside ranks. This plot is a bit
 unfair though, because positions with a larger sample size will have
 their correlation unfairly inflated due to being able to rank further
 down into benchwarmer players. I’ll reproduce the plot with the top 12
