@@ -21,8 +21,7 @@ the effects of different strategies.
 
 </br> </br>
 
-1. Organizing/Plotting the Data
--------------------------------
+# 1. Organizing/Plotting the Data
 
 The first thing I’ll do is organize the data. I’m using season
 projections from FantasyData.com, fantasyfootballanalytics.net, and
@@ -60,8 +59,7 @@ and summarized, I’m ready to test out a system.
 
 </br> </br>
 
-2. Evaluating a Draft Strategy
-------------------------------
+# 2. Evaluating a Draft Strategy
 
 After preparing the data and organizing estimated projections and
 errors, I’m ready to test out draft strategies. I want something [like
@@ -160,8 +158,7 @@ summary(sapply(topLineups, function(x) sum(x$Sim)))
 
 </br> </br>
 
-3. Parameter Optimization
--------------------------
+# 3. Parameter Optimization
 
 Now I’m ready to test different getPicks() parameters to see how I
 should do my draft to get my the best mean-starting lineup. I included
@@ -217,7 +214,7 @@ evaluate strategies.
 
 </br> </br>
 
-4. Conclusion
+# 4. Conclusion
 -------------
 
 Looking at the strategies, many of them perform similarly, finishing
