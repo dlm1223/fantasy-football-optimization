@@ -1215,7 +1215,7 @@ a difference, and certain ones perform worse. For example the zero-WR
 strategies (6 & 7) perform about 50 points worse than the default
 strategy. Not taking a backup TE and QB also worsen the score.
 
-</br>
+</br> </br>
 
 Finally, I reproduce this for all draft slots. Below you can see the
 results, and how the best strategy is affected by your draft slot.
