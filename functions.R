@@ -2,10 +2,10 @@
 #has coordName() function to coordinate teams and players
 
 library(RSelenium)
-library(lme4)
-library(png)
-library(grid)
-library(doSNOW)
+# library(lme4)
+# library(png)
+# library(grid)
+# library(doSNOW)
 library(plyr)
 library(dplyr)
 library(rvest)
