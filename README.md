@@ -21,7 +21,7 @@ the effects of different strategies.
 
 </br> </br>
 
-1. Organizing/Plotting the Data
+## 1. Organizing/Plotting the Data
 -------------------------------
 
 The first thing I’ll do is organize the data. I’m using season
@@ -58,7 +58,7 @@ and summarized, I’m ready to test out a system.
 
 </br> </br>
 
-2. Evaluating a Draft Strategy
+## 2. Evaluating a Draft Strategy
 ------------------------------
 
 After preparing the data and organizing estimated projections and
@@ -902,7 +902,7 @@ my simulation size as it seemed sufficient for the mean to converge.
 
 </br> </br>
 
-3. Parameter Optimization
+## 3. Parameter Optimization
 -------------------------
 
 Now I’m ready to test different getPicks() parameters to see how I
@@ -1239,7 +1239,7 @@ evaluate strategies.
 
 </br> </br>
 
-4. Conclusion
+## 4. Conclusion
 -------------
 
 Looking at the strategies, many of them perform similarly, finishing
