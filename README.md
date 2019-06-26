@@ -197,9 +197,8 @@ The above plots are a bit messy, but if you look closely you can see
 certain things that seem to make a difference. The 2nd and 3rd
 strategies–not taking a backup QB and not taking a backup TE have a
 negative effect, as the waiver wire adds apparently are not sufficient
-backup. In addition, across the board zero-RB(4&5) seems to perform as
-good as, or better than zero-WR (6&7). This is especially true in the
-mid-late slots where it seems like the zero-RB does much worse.
+backup. In addition, for almost every slot the zero-RB (4&5) seems to perform better than zero-WR (6&7). This is especially true in the
+mid-late slots where it seems like the zero-WR does much worse.
 
 This is just for Half-PPR 12 man leagues, and the results might change
 with different scoring but it at least is an attempt to quantitatively
