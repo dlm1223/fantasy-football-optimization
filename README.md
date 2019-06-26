@@ -37,7 +37,7 @@ for each position:
 
 ![](README_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
-In addition, I’d also like to summarize the errors/variance:
+You can see that the outside ranks have similar predictive accuracy to ADP.Rank. In addition, I’d also like to summarize the errors/variance:
 
 
 ![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
