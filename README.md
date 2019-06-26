@@ -32,7 +32,7 @@ which shows where players were drafted each year. For all of this, I’m
 using Half-PPR scoring and Yahoo defaults (1 QB, 2 RB, 2 WR, 1 TE, 1
 RB/WR/TE, 1 DST, 1K). To start off I’ll look at some summary stats:
 
-![](README_files/figure-markdown_strict/unnamed-chunk-2-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-2-1.png)
 
 From this chart, you can see that certain players are easier to project.
 DST expectedly is very hard to rank preseason so is an obvious candidate
@@ -44,13 +44,13 @@ their correlation unfairly inflated due to being able to rank further
 down into benchwarmer players. I’ll reproduce the plot with the top 12
 for each position:
 
-![](README_files/figure-markdown_strict/unnamed-chunk-3-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
 In addition, I’d also like to summarize the errors/variance:
 
     ## Picking joint bandwidth of 17.4
 
-![](README_files/figure-markdown_strict/unnamed-chunk-4-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 Above I show the distribution of errors for WRs, from 2008-2018. I am
 going to use this when I make my draft strategy. I want to know based on
@@ -83,25 +83,27 @@ points of all the picks, given the specified parameters and
 draft-position constraints. I show an example below, maximizing the
 points for Slot7/12 in a 15 round draft.
 
-    picks<-getPicks(slot="Slot7", data=all.data[all.data$Season==2019,], numTeams = 12,
-                    numRB=4, numWR = 5,numTE=2,numQB=2,numK=1, numDST=1)
+``` r
+picks<-getPicks(slot="Slot7", data=all.data[all.data$Season==2019,], numTeams = 12,
+                numRB=4, numWR = 5,numTE=2,numQB=2,numK=1, numDST=1)
+```
 
-              Player Pos Team ADP_half ADP.Rank fantPts_AGG
-
-6149 Julio Jones WR Atl 10.9 11.0 260.55 6156 Dalvin Cook RB Min 17.4
-18.0 224.20 6178 Julian Edelman WR Nwe 39.4 40.0 204.80 6180 Phillip
-Lindsay RB Den 41.8 42.0 195.55 6194 Deshaun Watson QB Hou 54.6 56.0
-328.92 6205 James White RB Nwe 64.2 67.0 178.70 6233 Lesean Mccoy RB Buf
-92.2 95.0 149.75 6234 Chi DST Chi 92.7 96.0 122.00 6243 Corey Davis WR
-Ten 100.9 105.0 145.20 6258 Dede Westbrook WR Jax 114.1 120.0 134.65
-6285 Dak Prescott QB Dal 144.1 147.0 296.65 6289 Greg Zuerlein K Lar
-146.7 151.0 143.00 6298 Greg Olsen TE Car 150.8 160.0 117.60 6310 Kyle
-Rudolph TE Min 157.2 172.5 119.55 6533 Mohamed Sanu WR Atl NA 500.0
-128.55 fantPts\_AGG.bin Slot 6149 (250,400\] 7 6156 (200,250\] 18 6178
-(200,250\] 31 6180 (150,200\] 42 6194 (250,400\] 55 6205 (150,200\] 66
-6233 (100,150\] 79 6234 (100,150\] 90 6243 (100,150\] 103 6258
-(100,150\] 114 6285 (250,400\] 127 6289 (100,150\] 138 6298 (100,150\]
-151 6310 (100,150\] 162 6533 (100,150\] 175
+    ##               Player Pos Team ADP_half ADP.Rank fantPts_AGG fantPts_AGG.bin Slot
+    ## 6149     Julio Jones  WR  Atl     10.9     11.0      260.55       (250,400]    7
+    ## 6156     Dalvin Cook  RB  Min     17.4     18.0      224.20       (200,250]   18
+    ## 6178  Julian Edelman  WR  Nwe     39.4     40.0      204.80       (200,250]   31
+    ## 6180 Phillip Lindsay  RB  Den     41.8     42.0      195.55       (150,200]   42
+    ## 6194  Deshaun Watson  QB  Hou     54.6     56.0      328.92       (250,400]   55
+    ## 6205     James White  RB  Nwe     64.2     67.0      178.70       (150,200]   66
+    ## 6233    Lesean Mccoy  RB  Buf     92.2     95.0      149.75       (100,150]   79
+    ## 6234             Chi DST  Chi     92.7     96.0      122.00       (100,150]   90
+    ## 6243     Corey Davis  WR  Ten    100.9    105.0      145.20       (100,150]  103
+    ## 6258  Dede Westbrook  WR  Jax    114.1    120.0      134.65       (100,150]  114
+    ## 6285    Dak Prescott  QB  Dal    144.1    147.0      296.65       (250,400]  127
+    ## 6289   Greg Zuerlein   K  Lar    146.7    151.0      143.00       (100,150]  138
+    ## 6298      Greg Olsen  TE  Car    150.8    160.0      117.60       (100,150]  151
+    ## 6310    Kyle Rudolph  TE  Min    157.2    172.5      119.55       (100,150]  162
+    ## 6533    Mohamed Sanu  WR  Atl       NA    500.0      128.55       (100,150]  175
 
 Above I display the optimal planned-draft given my parameters. You can
 see how each player’s ADP.Rank must be greater than or equal to the slot
@@ -122,30 +124,22 @@ able to get a decent player as a pickup for those positions.
 
 Below you can see an example using the above picks:
 
-    set.seed(1)
-    topLineup<-simSeason(picks = picks, data=all.data, numSims=1,
-                         numRB = 2, numWR=2, numFLEX = 1,  numQB=1, numTE = 1, numDST = 1, numK = 1   )
+``` r
+set.seed(1)
+topLineup<-simSeason(picks = picks, data=all.data, numSims=1,
+                     numRB = 2, numWR=2, numFLEX = 1,  numQB=1, numTE = 1, numDST = 1, numK = 1   )
+```
 
-    ##             Player Pos Team ADP_half ADP.Rank fantPts_AGG fantPts_AGG.bin
-    ## 5   Deshaun Watson  QB  Hou     54.6       56      328.92       (250,400]
-    ## 1      Julio Jones  WR  Atl     10.9       11      260.55       (250,400]
-    ## 7     Lesean Mccoy  RB  Buf     92.2       95      149.75       (100,150]
-    ## 3   Julian Edelman  WR  Nwe     39.4       40      204.80       (200,250]
-    ## 13      Greg Olsen  TE  Car    150.8      160      117.60       (100,150]
-    ## 4  Phillip Lindsay  RB  Den     41.8       42      195.55       (150,200]
-    ## 6      James White  RB  Nwe     64.2       67      178.70       (150,200]
-    ## 20             Ten DST  Ten       NA      500       92.00         (0,100]
-    ## 12   Greg Zuerlein   K  Lar    146.7      151      143.00       (100,150]
-    ##    Slot      error      Sim Pickup
-    ## 5    55  27.729750 356.6497      0
-    ## 1     7  19.683333 280.2333      0
-    ## 7    79 107.307440 257.0574      0
-    ## 3    31  24.565703 229.3657      0
-    ## 13  151  89.385152 206.9852      0
-    ## 4    42   7.255476 202.8055      0
-    ## 6    66 -34.826949 143.8731      0
-    ## 20   NA  50.666667 142.6667      1
-    ## 12  138  -4.000000 139.0000      0
+    ##             Player Pos Team ADP_half ADP.Rank fantPts_AGG fantPts_AGG.bin Slot      error      Sim Pickup
+    ## 5   Deshaun Watson  QB  Hou     54.6       56      328.92       (250,400]   55  27.729750 356.6497      0
+    ## 1      Julio Jones  WR  Atl     10.9       11      260.55       (250,400]    7  19.683333 280.2333      0
+    ## 7     Lesean Mccoy  RB  Buf     92.2       95      149.75       (100,150]   79 107.307440 257.0574      0
+    ## 3   Julian Edelman  WR  Nwe     39.4       40      204.80       (200,250]   31  24.565703 229.3657      0
+    ## 13      Greg Olsen  TE  Car    150.8      160      117.60       (100,150]  151  89.385152 206.9852      0
+    ## 4  Phillip Lindsay  RB  Den     41.8       42      195.55       (150,200]   42   7.255476 202.8055      0
+    ## 6      James White  RB  Nwe     64.2       67      178.70       (150,200]   66 -34.826949 143.8731      0
+    ## 20             Ten DST  Ten       NA      500       92.00         (0,100]   NA  50.666667 142.6667      1
+    ## 12   Greg Zuerlein   K  Lar    146.7      151      143.00       (100,150]  138  -4.000000 139.0000      0
 
 You can see from “error”, which players over and underperformed in the
 sim, sampling the error from 2008-2018 data. Additionally, in the above
@@ -154,10 +148,12 @@ pickup. I can now repeat simseason() many times, and so can get a mean
 simulated-lineup-total-score for the planned picks. I used 2000 as my
 simulation size as it seemed sufficient for the mean to converge.
 
-    topLineups<-simSeason(picks = picks, data=all.data, numSims=2000,
-                          numRB = 2, numWR=2, numFLEX = 1,
-                          numQB=1, numTE = 1, numDST = 1, numK = 1   )
-    summary(sapply(topLineups, function(x) sum(x$Sim)))
+``` r
+topLineups<-simSeason(picks = picks, data=all.data, numSims=2000,
+                      numRB = 2, numWR=2, numFLEX = 1,
+                      numQB=1, numTE = 1, numDST = 1, numK = 1   )
+summary(sapply(topLineups, function(x) sum(x$Sim)))
+```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
     ##    1374    1666    1752    1756    1840    2237
@@ -175,7 +171,7 @@ strategies like “have exactly one TE in Rounds 1-2” or “exactly zero RB
 in Rounds 1-4”, or other things. I test out several parameter
 combinations below for the 7th slot of a 12 team, 15 round draft.
 
-![](README_files/figure-markdown_strict/unnamed-chunk-10-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 And there are the detailed parameters with each strategy:
 
@@ -203,7 +199,7 @@ strategy. Not taking a backup TE and QB also worsen the score.
 Finally, I reproduce this for all draft slots. Below you can see the
 results, and how the best strategy is affected by your draft slot.
 
-![](README_files/figure-markdown_strict/unnamed-chunk-12-1.png)![](README_files/figure-markdown_strict/unnamed-chunk-12-2.png)
+![](README_files/figure-markdown_github/unnamed-chunk-12-1.png)![](README_files/figure-markdown_github/unnamed-chunk-12-2.png)
 
 </br>
 

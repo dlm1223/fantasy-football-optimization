@@ -1,7 +1,13 @@
 ---
 output: 
-  md_document
+  md_document:
+    toc: false
+    variant: markdown_github
+
 ---
+```{r set-options, echo=FALSE, cache=FALSE}
+options(width = 10000)
+```
 
 # Simulation and Optimization for Fantasy Football Drafts
 
@@ -129,8 +135,9 @@ picks<-getPicks(slot="Slot7", data=all.data[all.data$Season==2019,], numTeams = 
                 numRB=4, numWR = 5,numTE=2,numQB=2,numK=1, numDST=1)
 ```
 
-```{r results="asis", include=T, eval=T , echo=F}
+```{r  include=T, eval=T , echo=F}
 picks[, c("Player" ,"Pos","Team", "ADP_half", "ADP.Rank", "fantPts_AGG", "fantPts_AGG.bin","Slot" )]
+
 ```
 
 Above I display the optimal planned-draft given my parameters. You can see how each player’s ADP.Rank must be greater than or equal to the slot they are drafted at. 
