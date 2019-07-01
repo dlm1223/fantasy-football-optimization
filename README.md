@@ -184,8 +184,8 @@ And there are the detailed parameters with each
 
 Based on the above, you can see how certain strategies don’t really make
 a difference, and certain ones perform worse. For example the zero-WR
-strategies (6 & 7) perform about 50 points worse than the default
-strategy. Not taking a backup TE and QB also worsen the score.
+strategy (6) performs about 50 points worse than the default strategy.
+Not taking a backup TE and QB also worsen the score.
 
 </br>
 
