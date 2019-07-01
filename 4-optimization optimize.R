@@ -138,10 +138,10 @@ simSeason<-function(picks,data=all.data, numRB=2, numWR=2, numTE=1, numQB=1, num
     fa.pickups$Pickup<-1
     fa.pickups[, !colnames(fa.pickups)%in% "Player.Sample.Values"]
   }
-  system.time({
+  #system.time({
     #get fa.pickips for each sim
-    fa.pickups<-lapply(1:numSims, function(x) simFAs(undrafted =undrafted, data=data, fa.param = fa.param)) 
-  })
+  fa.pickups<-lapply(1:numSims, function(x) simFAs(undrafted =undrafted, data=data, fa.param = fa.param)) 
+  #})
   
   #rbind FAs and picks for each sim
   picks2<-lapply(1:numSims, function(x) data.frame(rbindlist(list(picks[[x]], fa.pickups[[x]]), fill=T)))
