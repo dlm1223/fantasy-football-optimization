@@ -43,10 +43,10 @@ The first thing I'll do is organize/plot the data. I'm using season projections 
 
 
 
-```{r include=T, eval=T , echo=F, fig.width=6.5, fig.height=3,warning=FALSE}
+```{r include=T, eval=T , echo=F, fig.width=6.5, fig.height=3,warning=FALSE,message=FALSE}
 #to compare projection rankings fairly, drop missing values
 analyze<-all.data[complete.cases(all.data[,c("fantPts", "ADP_half", "fantPts_FFA", "fantPts_FDATA", "fantPts_FFTODAY")])|
-                    (complete.cases(all.data[,c("fantPts", "ADP_half", "fantPts_FFA",  "fantPts_FFTODAY")])& all.data$Pos=='K')  ,] #
+                    (complete.cases(all.data[,c("fantPts", "ADP_half",  "fantPts_FFTODAY")])& all.data$Pos%in% c('K', 'DST'))  ,] #
 analyze<-analyze[analyze$Season>=2014,]
 analyze<-ddply(analyze, .(Pos, Season), mutate,
                Actual.rank=rank(-fantPts,na.last = "keep" ),
@@ -79,9 +79,9 @@ From this chart, you can see that certain positions are easier to project. DST e
 
 
 
-```{r include=T, eval=T , echo=F, fig.width=6.5, fig.height=3,warning=FALSE}
+```{r include=T, eval=T , echo=F, fig.width=6.5, fig.height=3,warning=FALSE,message=FALSE}
 analyze<-all.data[complete.cases(all.data[,c("fantPts", "ADP_half", "fantPts_FFA", "fantPts_FDATA", "fantPts_FFTODAY")])|
-                    (complete.cases(all.data[,c("fantPts", "ADP_half", "fantPts_FFA",  "fantPts_FFTODAY")])& all.data$Pos=='K')  ,] #
+                    (complete.cases(all.data[,c("fantPts", "ADP_half",  "fantPts_FFTODAY")])& all.data$Pos%in% c('K', 'DST'))  ,] #
 analyze<-analyze[analyze$Season>=2014,]
 analyze<-ddply(analyze, .(Pos, Season), mutate,
                Actual.rank=rank(-fantPts,na.last = "keep" ),
@@ -112,7 +112,7 @@ In addition, I'd also like to summarize the errors/variance:
 
 
 
-```{r include=T, eval=T , echo=F, fig.width=6.5, fig.height=3,warning=FALSE}
+```{r include=T, eval=T , echo=F, fig.width=6.5, fig.height=3,warning=FALSE,message=FALSE}
 
 ggplot(data=all.data[all.data$Pos%in% c("WR"),],aes(x=Error, y=paste0(Pos,fantPts_AGG.bin )) )+
   stat_density_ridges(quantile_lines = TRUE, quantiles = 2)
@@ -235,7 +235,7 @@ Based on the above, you can see how certain strategies don't really make a diffe
 Finally, I reproduce this for all draft slots. Below you can see the results, and how the best strategy is affected by your draft slot.
 
 
-```{r include=T, eval=T , echo=F, fig.width=10, fig.height=4,warning=FALSE}
+```{r include=T, eval=T , echo=F, fig.width=10, fig.height=4,warning=FALSE,message=FALSE}
 
 ggplot(means[means$Slot%in% paste0("Slot", 1:6),], aes(x=Slot, y=mean.score, fill=Strategy))+
   geom_bar(stat = "identity", position = "dodge")+

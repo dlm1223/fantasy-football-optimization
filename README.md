@@ -41,8 +41,6 @@ reproduce the plot with the top 12 for each position:
 
 In addition, I’d also like to summarize the errors/variance:
 
-    ## Picking joint bandwidth of 17.4
-
 ![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 Above I show the distribution of errors for WRs, from 2008-2018. I am
