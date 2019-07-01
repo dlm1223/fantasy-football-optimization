@@ -75,6 +75,7 @@ ggplot(melt(cors[, !colnames(cors)=="n"], id.vars="Pos", value.name='cor',variab
 
 ```
 
+
 From this chart, you can see that certain positions are easier to project. DST expectedly is very hard to rank preseason so is an obvious candidate to draft late. You can also see that the outside ranks have similar predictive accuracy to ADP.Rank. AGG.rank is just the mean of the outside ranks. This plot is a bit unfair though, because positions with a larger sample size will have their correlation unfairly inflated due to being able to rank further down into benchwarmer players. I'll reproduce the plot with the top 12 for each position:
 
 
