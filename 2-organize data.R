@@ -127,7 +127,7 @@ summary(all.data[all.data$Season>=2014& !is.na(all.data$ADP_half),])
 ####QUICK PLOTS######
 
 #plot some correlations
-
+all.data[, grepl("fantPts_", colnames(all.data))][all.data[, grepl("fantPts_", colnames(all.data))]==0]<-NA
 all.data$fantPts_AGG<-rowMeans(all.data[,colnames(all.data)%in% c("fantPts_FDATA", "fantPts_FFTODAY", "fantPts_FFA")], na.rm=T)
 
 #to compare projection rankings fairly, drop missing values
@@ -197,7 +197,7 @@ ggplot(melt(cors, id.vars="Pos", value.name='cor',variable.name='Source'), aes(x
 
 #top 12 each position
 analyze<-all.data[complete.cases(all.data[,c("fantPts", "ADP_half", "fantPts_FFA", "fantPts_FDATA", "fantPts_FFTODAY")])|
-                    (complete.cases(all.data[,c("fantPts", "ADP_half", "fantPts_FFA",  "fantPts_FFTODAY")])& all.data$Pos=='K')  ,] #
+                    (complete.cases(all.data[,c("fantPts", "ADP_half",  "fantPts_FFTODAY")])& all.data$Pos%in% c('K', 'DST'))  ,] #
 analyze<-analyze[analyze$Season>=2014,]
 analyze<-ddply(analyze, .(Pos, Season), mutate,
                Actual.rank=rank(-fantPts,na.last = "keep" ),

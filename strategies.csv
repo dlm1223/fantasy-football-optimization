@@ -2,10 +2,10 @@ Strategy.ID,numRB,numWR,numTE,numQB,numK,numDST,Constraints/Comments
 1,4,5,2,2,1,1,default
 2,5,5,1,2,1,1,"default, no backup TE"
 3,5,5,2,1,1,1,"default, no backup QB"
-4,5,4,2,2,1,1,zeroRB R1-3
-5,6,3,2,2,1,1,zeroRB R1-3. RB heavy
-6,4,5,2,2,1,1,zeroWR R1-3
-7,3,6,2,2,1,1,zeroWR R1-3. WR heavy
+4,5,4,2,2,1,1,zeroRB in R1-3
+5,5,4,2,2,1,1,oneRB in R1-5
+6,4,5,2,2,1,1,zeroWR in R1-3
+7,4,5,2,2,1,1,oneWR in R1-5
 8,4,5,2,2,1,1,zeroQB in R1-9
 9,3,4,2,2,2,2,backup everyone
 10,4,5,2,2,1,1,oneTE in R1 -2

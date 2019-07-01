@@ -28,8 +28,8 @@ errors<-ddply(all.data[!is.na(all.data$Error),], .(fantPts_AGG.bin, Pos), summar
               sd.error=sd(Error),
               n=length(Error)
 )
-errors[order(errors$fantPts_AGG.bin, decreasing = T),]
 errors<-errors[errors$n>10,]
+errors[order(errors$fantPts_AGG.bin, decreasing = T),]
 
 #appears to be some bias in 3rd party projections
 ggplot(data=all.data[all.data$Pos=="RB",],aes(x=fantPts_AGG.bin, y=Error) )+
