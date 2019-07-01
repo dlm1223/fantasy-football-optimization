@@ -28,7 +28,6 @@ RB/WR/TE, 1 DST, 1K). To start off I’ll look at some summary stats:
 
 ![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-<<<<<<< HEAD
 From this chart, you can see that certain positions are easier to
 project. DST expectedly is very hard to rank preseason so is an obvious
 candidate to draft late. You can also see that the outside ranks have
@@ -37,15 +36,6 @@ the outside ranks. This plot is a bit unfair though, because positions
 with a larger sample size will have their correlation unfairly inflated
 due to being able to rank further down into benchwarmer players. I’ll
 reproduce the plot with the top 12 for each position:
-=======
-From this chart, you can see that certain positions are easier to project.
-DST expectedly is very hard to rank preseason so is an obvious candidate
-to draft late. You can also see that the outside ranks have similar predictive accuracy to ADP.Rank. AGG.rank is just the mean of the outside ranks. This plot is a bit
-unfair though, because positions with a larger sample size will have
-their correlation unfairly inflated due to being able to rank further
-down into benchwarmer players. I’ll reproduce the plot with the top 12
-for each position:
->>>>>>> a978403d3b73f98de4a3b48fece857ad6cb54242
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
