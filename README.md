@@ -181,8 +181,8 @@ And there are the detailed parameters with each
 
 Based on the above, you can see how certain strategies don’t really make
 a difference, and certain ones perform worse. For example the zero-WR
-strategy (6) performs about 50 points worse than the default strategy.
-Not taking a backup TE and QB also worsen the score.
+strategy (6) performs worse than the zero-RB strategy. Not taking a
+backup TE and QB also worsen the score.
 
 </br>
 
@@ -211,25 +211,18 @@ evaluate strategies.
 ## 4\. Conclusion
 
 Looking at the strategies, many of them perform similarly, finishing
-within 10-20 points. A couple did do worse, for example the zero-WR does
-considerably worse than zero-RB for people with mid-late slots in the
-draft, meaning you should likely take some WRs in the first few rounds.
-For these mid-late slots, zero-WR in R1-3 often performed 50 points
-worse than a zero-RB in it’s mean simulated starting lineup, which is
-basically like drafting Derrick Henry over Melvin Gordon in R1, and so
-it isn’t insignificant. If a league requires 3 WRs to start then this
-early RB strategy likely becomes even worse. Other parameter changes
-like taking backup TE/QBs also have a decent 10-20 point impact across
-draft slots.
+within 10-20 points. There were a few notable things though, for example
+zero-RB seem to perform much better than zero-WR. If a league requires 3
+WRs to start then this early RB strategy likely becomes even worse.
+Other parameter changes like taking a backup QB also seems to have a
+large effect.
 
 Another takeaway is that projections have been about as accurate as ADP.
-People often assume analytics will automatically give them an edge, but
-often times public consensus or human rankings can be as accurate or
-more accurate than an analytical model. I wouldn’t just go by a
-projection model or trust someone until I’ve seen it is proven to be
-useful, even if they try to make it sound complex. WRs do appear to be
-somewhat easier and so it might make sense to work on a model for them
-or find someone who has an accurate one.
+I wouldn’t just go by a projection model or trust someone until I’ve
+seen it is proven to be useful, even if they try to make it sound
+complex. WRs do appear to be somewhat easier to outperform ADP and so I
+think it makes sense to work on a model for them or find someone who has
+an accurate one.
 
 Finally, there are a couple shortcomings with my method. Firstly, I am
 not accounting for opponent probabilistic picking i.e. the fact that you
@@ -239,22 +232,23 @@ you things like the effect of going RB early and WR late, and keeps it
 simpler, despite the available players not being exact. Accounting for
 this though would be complicated as I’d have to return a set of
 potential drafts with getPicks() instead of a single draft, so I wanted
-to keep it simple for now.
+to keep it simple for now. Comparing the results of a probabalistic pick
+system to the current system would be a useful project.
 
 The second main shortcoming I think is that the optimal strategy
-determined by the system will be dependent on the projections. For
-example, if there is a WR that is projected as hugely undervalued in the
-10th round, then doing a WR early-RB late strategy will look bad because
-I am missing out on that value. I think this is something I should look
-into. Having said that, things like taking a backup QB/TE do seem like
-they’d be less affected by this. An interesting idea would be to create
-an entirely ADP-based projection model so that I can see how the optimal
-strategy would be regardless of projection system i.e. if there are no
-sleepers.
+determined by the system will be dependent on the projections I supply.
+For example, if there is a WR that is projected as hugely undervalued in
+the 10th round, then doing a WR-early, RB-late strategy will look bad
+because I am missing out on that value. I think this is something I
+should look into. Having said that, things like taking a backup QB/TE
+seem like they’d be less affected by this. An interesting idea would be
+to create an entirely ADP-based projection model so that I can see how
+the optimal strategy would be regardless of projection system i.e. if
+there are no sleepers.
 
 TLDR: Most strategies did similarly. It does seem that you should take a
-backup TE and QB. In addition, zero-WR strategy does not seem like a
-good move, especially if you are in the mid-late picks of the draft, so
-I’d try to draft at least 1 WR in the first few rounds. Other than that
-I haven’t found any shocking secrets yet that will give me a huge edge.
-Thanks for reading\!
+backup QB, and a backup TE, especially if you don’t take a TE early. In
+addition, zero-WR strategy does not seem like a good move, especially if
+you are in the mid picks of the draft. Other than that I haven’t found
+any shocking secrets yet that will give me a huge edge. Thanks for
+reading\!
