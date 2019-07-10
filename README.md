@@ -194,7 +194,7 @@ slot.
 
 </br>
 
-In the above plots you can see strategy performance for each draft slot. For many of the slots the chosen strategy actually does not seem to have a huge effect, which is interesting. Some things do make a difference though--taking a backup QB seems to have a large negative effect for all draft positions. Not taking a backup TE also appears to have a negative impact. I guess the waiver adds you can get for these positions are not as good as someone you can get through the draft. In addition, for many of the slots doing zero-RB (4&5) seems to be better than zero-WR (6&7). 
+In the above plots you can see strategy performance for each draft slot. For many of the slots the chosen strategy actually does not seem to have a huge effect, which is interesting. Some things do make a difference though--not taking a backup QB (strategy 3) seems to have a large negative effect for all draft positions. Not taking a backup TE (#2) also appears to have a negative impact. I guess the waiver adds you can get for these positions are not as good as someone you can get through the draft. In addition, for many of the slots doing zero-RB (4&5) seems to be better than zero-WR (6&7). 
 
 This is just for Half-PPR 12 man leagues, and the results might change
 with different scoring but it at least is an attempt to quantitatively
