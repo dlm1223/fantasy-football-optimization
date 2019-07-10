@@ -79,22 +79,22 @@ picks<-getPicks(slot="Slot7", data=all.data[all.data$Season==2019,], numTeams = 
                 numRB=4, numWR = 5,numTE=2,numQB=2,numK=1, numDST=1)
 ```
 
-    ##              Player Pos Team ADP_half ADP.Rank fantPts_AGG fantPts_AGG.bin Slot
-    ## 6149    Julio Jones  WR  Atl     10.9     11.0      260.55       (250,400]    7
-    ## 6156    Dalvin Cook  RB  Min     17.4     18.0      224.20       (200,250]   18
-    ## 6178 Julian Edelman  WR  Nwe     39.4     40.0      204.80       (200,250]   31
-    ## 6183   Chris Carson  RB  Sea     44.2     45.0      192.60       (150,200]   42
-    ## 6194 Deshaun Watson  QB  Hou     54.6     56.0      328.92       (250,400]   55
-    ## 6205    James White  RB  Nwe     64.2     67.0      178.70       (150,200]   66
-    ## 6233   Lesean Mccoy  RB  Buf     92.2     95.0      149.75       (100,150]   79
-    ## 6234            Chi DST  Chi     92.7     96.0      122.00       (100,150]   90
-    ## 6243    Corey Davis  WR  Ten    100.9    105.0      145.20       (100,150]  103
-    ## 6258 Dede Westbrook  WR  Jax    114.1    120.0      134.65       (100,150]  114
-    ## 6285   Dak Prescott  QB  Dal    144.1    147.0      296.65       (250,400]  127
-    ## 6289  Greg Zuerlein   K  Lar    146.7    151.0      143.00       (100,150]  138
-    ## 6298     Greg Olsen  TE  Car    150.8    160.0      117.60       (100,150]  151
-    ## 6310   Kyle Rudolph  TE  Min    157.2    172.5      119.55       (100,150]  162
-    ## 6533   Mohamed Sanu  WR  Atl       NA    500.0      128.55       (100,150]  175
+    ##                Player Pos Team ADP_half ADP.Rank fantPts_AGG fantPts_AGG.bin Slot
+    ## 10727     Julio Jones  WR  Atl     11.0     11.0    260.6014       (250,400]    7
+    ## 10734     Todd Gurley  RB  Lar     17.0     18.0    230.9717       (200,250]   18
+    ## 10752   George Kittle  TE  Sfo     33.3     36.0    193.4550       (150,200]   31
+    ## 10759 Phillip Lindsay  RB  Den     42.6     43.0    193.0022       (150,200]   42
+    ## 10779     James White  RB  Nwe     62.2     63.0    173.3381       (150,200]   55
+    ## 10789  Alshon Jeffery  WR  Phi     71.7     73.0    169.2632       (150,200]   66
+    ## 10798  Allen Robinson  WR  Chi     80.0     82.0    157.8520       (150,200]   79
+    ## 10824     Corey Davis  WR  Ten    105.9    108.0    153.1803       (150,200]   90
+    ## 10827    Lesean Mccoy  RB  Buf    108.2    110.5    146.5663       (100,150]  103
+    ## 10830  Jameis Winston  QB  Tam    111.8    114.0    297.6446       (250,400]  114
+    ## 10845             Bal DST  Bal    124.6    129.0    110.0000       (100,150]  127
+    ## 10854    Dak Prescott  QB  Dal    131.9    138.0    296.9355       (250,400]  138
+    ## 10867   Greg Zuerlein   K  Lar    147.2    151.5    123.1068       (100,150]  151
+    ## 10890    Kyle Rudolph  TE  Min    159.6    174.0    118.2575       (100,150]  162
+    ## 11107    Mohamed Sanu  WR  Atl       NA    500.0    131.2559       (100,150]  175
 
 Above I display the optimal planned-draft given my parameters. You can
 see how each player’s ADP.Rank must be greater than or equal to the slot
@@ -121,21 +121,22 @@ topLineup<-simSeason(picks = picks, data=all.data, numSims=1,
                      numRB = 2, numWR=2, numFLEX = 1,  numQB=1, numTE = 1, numDST = 1, numK = 1   )
 ```
 
-    ##            Player Pos Team ADP_half ADP.Rank fantPts_AGG fantPts_AGG.bin Slot      error      Sim Pickup
-    ## 5  Deshaun Watson  QB  Hou     54.6       56      328.92       (250,400]   55  27.729750 356.6497      0
-    ## 1     Julio Jones  WR  Atl     10.9       11      260.55       (250,400]    7  19.683333 280.2333      0
-    ## 7    Lesean Mccoy  RB  Buf     92.2       95      149.75       (100,150]   79 107.307440 257.0574      0
-    ## 3  Julian Edelman  WR  Nwe     39.4       40      204.80       (200,250]   31  24.565703 229.3657      0
-    ## 13     Greg Olsen  TE  Car    150.8      160      117.60       (100,150]  151  89.385152 206.9852      0
-    ## 4    Chris Carson  RB  Sea     44.2       45      192.60       (150,200]   42   7.255476 199.8555      0
-    ## 6     James White  RB  Nwe     64.2       67      178.70       (150,200]   66 -34.826949 143.8731      0
-    ## 12  Greg Zuerlein   K  Lar    146.7      151      143.00       (100,150]  138  -4.000000 139.0000      0
-    ## 8             Chi DST  Chi     92.7       96      122.00       (100,150]   90   4.000000 126.0000      0
+    ##             Player Pos Team ADP_half ADP.Rank fantPts_AGG fantPts_AGG.bin Slot      error      Sim Pickup
+    ## 12    Dak Prescott  QB  Dal    131.9    138.0    296.9355       (250,400]  138  -5.942500 290.9930      0
+    ## 1      Julio Jones  WR  Atl     11.0     11.0    260.6014       (250,400]    7  19.683333 280.2847      0
+    ## 8      Corey Davis  WR  Ten    105.9    108.0    153.1803       (150,200]   90 106.528507 259.7088      0
+    ## 4  Phillip Lindsay  RB  Den     42.6     43.0    193.0022       (150,200]   42   7.255476 200.2577      0
+    ## 3    George Kittle  TE  Sfo     33.3     36.0    193.4550       (150,200]   31   3.537667 196.9927      0
+    ## 9     Lesean Mccoy  RB  Buf    108.2    110.5    146.5663       (100,150]  103   2.115981 148.6822      0
+    ## 13   Greg Zuerlein   K  Lar    147.2    151.5    123.1068       (100,150]  151  16.114583 139.2214      0
+    ## 18     Chris Hogan  WR  Car       NA    500.0     65.1050         (0,100]   NA  66.172444 131.2774      1
+    ## 20             Nyg DST  Nyg       NA    500.0     81.0000         (0,100]   NA  27.000000 108.0000      1
 
 You can see from “error”, which players over and underperformed in the
 sim, sampling the error from 2008-2018 data. Additionally, in the above
-sim you see how Tennessee DST made it into the top starting lineup as a
-pickup. I can now repeat simseason() many times, and so can get a mean
+sim you see how a player can make it into the top starting lineup as a
+pickup if their simmed score was better than a drafted player. I can now
+repeat simseason() many times, and so can get a mean
 simulated-lineup-total-score for the planned picks. I used 2000 as my
 simulation size as it seemed sufficient for the mean to converge.
 
@@ -147,7 +148,7 @@ summary(sapply(topLineups, function(x) sum(x$Sim)))
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##    1288    1649    1741    1744    1831    2190
+    ##    1363    1638    1729    1732    1821    2171
 
 </br> </br>
 
@@ -177,10 +178,6 @@ And there are the detailed parameters with each
     ## 8            8     4     5     2     2    1      1        zeroQB in R1-9
     ## 9            9     3     4     2     2    2      2       backup everyone
     ## 10          10     4     5     2     2    1      1        oneTE in R1 -2
-
-<!-- </div> -->
-
-<!-- </div> -->
 
 Based on the above, you can see how certain strategies don’t really make
 a difference, and certain ones perform worse. For example the zero-WR

@@ -139,4 +139,19 @@ means<-ddply(all.slot.sims, .(Slot, Sim),summarize,
              sd.score=sd(Lineup.Score), 
              high.score=sum(Lineup.Score>1900)/length(Lineup.Score))
 means$Slot<-factor(means$Slot, levels=paste0("Slot", 1:12))
+means$Sim<-as.numeric(gsub("simScores","", means$Sim))
 means[order(means$Slot),]
+
+
+strategies<-read.csv("strategies.csv")
+strategies<-rbind.fill(strategies,data.frame(Strategy.ID=11:12,Constraints.Comments=c("Zero-RB ALT", "Zero-WR ALT") ))
+strategies$Strategy<-paste(strategies$Strategy.ID, strategies$Constraints.Comments, sep=". ")
+strategies
+
+means$Strategy<-strategies$Strategy[match(means$Sim,strategies$Strategy.ID)]
+means$Strategy<-factor(means$Strategy, levels = unique(means$Strategy))
+
+ggplot(means, aes(x=Slot, y=mean.score, fill=Strategy))+
+  geom_bar(stat = "identity", position = "dodge")+
+  coord_cartesian(ylim=c(1680, 1780))+
+  theme(axis.title.x=element_blank())

@@ -146,7 +146,9 @@ picks<-getPicks(slot="Slot7", data=all.data[all.data$Season==2019,], numTeams = 
 ```
 
 ```{r  include=T, eval=T , echo=F}
-picks[, c("Player" ,"Pos","Team", "ADP_half", "ADP.Rank", "fantPts_AGG", "fantPts_AGG.bin","Slot" )]
+picks[, c("Player" ,"Pos","Team", "ADP_half", "ADP.Rank", "fantPts_AGG", "fantPts_AGG.bin","Slot" )]#%>%
+# kable(row.names = F, digits = 3) %>%
+# kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 
 ```
 
@@ -167,12 +169,14 @@ topLineup<-simSeason(picks = picks, data=all.data, numSims=1,
 
 ```{r include=T, eval=T , echo=F}
 
-topLineup[[1]][, c("Player" ,"Pos","Team", "ADP_half", "ADP.Rank", "fantPts_AGG", "fantPts_AGG.bin","Slot", "error", "Sim", "Pickup" )]
+topLineup[[1]][, c("Player" ,"Pos","Team", "ADP_half", "ADP.Rank", "fantPts_AGG", "fantPts_AGG.bin","Slot", "error", "Sim", "Pickup" )]#%>%
+# kable(row.names = F, digits = 3) %>%
+# kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 
 ```
 
 
-You can see from "error", which players over and underperformed in the sim, sampling the error from 2008-2018 data. Additionally, in the above sim you see how Tennessee DST made it into the top starting lineup as a pickup. I can now repeat simseason() many times, and so can get a mean simulated-lineup-total-score for the planned picks. I used 2000 as my simulation size as it seemed sufficient for the mean to converge.
+You can see from "error", which players over and underperformed in the sim, sampling the error from 2008-2018 data. Additionally, in the above sim you see how a player can make it into the top starting lineup as a pickup if their simmed score was better than a drafted player. I can now repeat simseason() many times, and so can get a mean simulated-lineup-total-score for the planned picks. I used 2000 as my simulation size as it seemed sufficient for the mean to converge.
 
 
 ```{r include=T, eval=T , echo=T}
@@ -222,11 +226,11 @@ And there are the detailed parameters with each strategy:
 
 ```{r include=T, eval=T , echo=F, fig.width=7, fig.height=4,warning=FALSE,message=F}
 
-strategies[,c("Strategy.ID", "numRB", "numWR", "numTE", "numQB", "numK", "numDST", "Constraints.Comments") ]
+strategies[,c("Strategy.ID", "numRB", "numWR", "numTE", "numQB", "numK", "numDST", "Constraints.Comments") ]#%>%
+# kable(row.names = F, digits = 3) %>%
+# kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 
 ```
-<!-- </div> -->
-<!-- </div> -->
 
 
 

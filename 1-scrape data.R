@@ -246,7 +246,7 @@ readffcalc<-function(year, scoring="standard"){
   }
   stats<-stats[, !grepl("High|Low|TimesDrafted|Graph|Rk|Round|Bye", colnames(stats))]
   stats$Season<-year
-  colnames(stats)[colnames(stats)%in% c("ADP","ADPSD")]<-paste(c("ADP", "ADPSD"), gsub("andar", "", scoring), sep="_")
+  colnames(stats)[colnames(stats)%in% c("ADP","ADPSD")]<-paste(c("ADP", "ADPSD"), gsub("andar|-ppr", "", scoring), sep="_") #colname==ppr, half, or std
   stats$Pos[stats$Pos=="PK"]<-"K"
   stats$Pos[stats$Pos=="DEF"]<-"DST"
   stats
