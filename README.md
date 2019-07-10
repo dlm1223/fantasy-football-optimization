@@ -236,9 +236,7 @@ to create an entirely ADP-based projection model so that I can see how
 the optimal strategy would be regardless of projection system i.e. if
 there are no sleepers.
 
-TLDR: Most strategies did similarly. It does seem that you should take a
-backup QB, and a backup TE, especially if you don’t take a TE early. In
-addition, zero-WR strategy does not seem like a good move, especially if
-you are in the mid picks of the draft. Other than that I haven’t found
+TLDR: Most strategies did similarly. It does seem that you should definitely take a
+backup QB, and also a backup TE especially if you don’t take a TE early. Other than that I haven’t found
 any shocking secrets yet that will give me a huge edge. Thanks for
 reading\!
