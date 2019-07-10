@@ -195,12 +195,8 @@ slot.
 </br>
 
 The above plots are a bit messy, but if you look closely you can see
-certain things that seem to make a difference. The 2nd and 3rd
-strategies-not taking a backup QB and not taking a backup TE have a
-negative effect, as the waiver wire adds apparently are not sufficient
-backup. In addition, for almost every slot the zero-RB (4&5) seems to
-perform better than zero-WR (6&7). This is especially true in the
-mid-late slots where it seems like the zero-WR does much worse.
+certain things that seem to make a difference. Not taking a backup QB seems to have a large negative effect for all draft positions. Not taking a backup TE and QB seems to have a large negative impact. I guess the waiver adds you can get for these positions are not as good as someone you can get through the draft. In addition, for many of the slots the zero-RB (4&5) seems to
+perform better than zero-WR (6&7), for example slots 5-6.
 
 This is just for Half-PPR 12 man leagues, and the results might change
 with different scoring but it at least is an attempt to quantitatively
