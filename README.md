@@ -210,12 +210,8 @@ evaluate strategies.
 
 ## 4\. Conclusion
 
-Looking at the strategies, many of them perform similarly, finishing
-within 10-20 points. There were a few notable things though, for example
-zero-RB seem to perform much better than zero-WR. If a league requires 3
-WRs to start then this early RB strategy likely becomes even worse.
-Other parameter changes like taking a backup QB also seems to have a
-large effect.
+Looking at the strategies, many of them perform similarly, finishing within 10-20 points. Zero RB does seem to preform better than zero WR, but in general, strategy seems to have only a small effect for most of the draft slots. If a league requires 3 WRs to start then this will probably favor an early WR strategy further, and if the scoring is PPR or STD then that might have an effect too. Parameter changes like taking a backup QB seemed to have a large effect accross the board.
+
 
 Another takeaway is that projections have been about as accurate as ADP.
 I wouldn’t just go by a projection model or trust someone until I’ve
